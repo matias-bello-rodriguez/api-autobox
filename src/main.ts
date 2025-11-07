@@ -5,10 +5,12 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // Enable CORS
+  // Enable CORS - Permitir todas las conexiones en desarrollo
   app.enableCors({
-    origin: process.env.CORS_ORIGIN || 'http://localhost:8081',
+    origin: true, // Permite cualquier origen en desarrollo
     credentials: true,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    allowedHeaders: 'Content-Type, Authorization, Accept',
   });
 
   // Global validation pipe
@@ -24,8 +26,9 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
 
   const port = process.env.PORT || 3000;
-  await app.listen(port);
+  await app.listen(port, '0.0.0.0'); // Escuchar en todas las interfaces
   console.log(`🚀 Application is running on: http://localhost:${port}/api`);
+  console.log(`📱 Para móviles usa: http://192.168.0.19:${port}/api`);
 }
 bootstrap();
 
