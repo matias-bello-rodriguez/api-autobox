@@ -34,6 +34,11 @@ export class VehiclesController {
     return this.vehiclesService.search(query);
   }
 
+  @Get('validate-plate/:plate')
+  validatePlate(@Param('plate') plate: string) {
+    return this.vehiclesService.validatePlate(plate);
+  }
+
   @Get('owner/:ownerId')
   findByOwner(@Param('ownerId') ownerId: string) {
     return this.vehiclesService.findByOwner(ownerId);
