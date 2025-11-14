@@ -39,6 +39,19 @@ export class VehiclesController {
     return this.vehiclesService.validatePlate(plate);
   }
 
+  @Get('models/:brand')
+  getModelsByBrand(@Param('brand') brand: string) {
+    return this.vehiclesService.getModelsByBrand(brand);
+  }
+
+  @Get('years/:brand/:model')
+  getYearsByBrandAndModel(
+    @Param('brand') brand: string,
+    @Param('model') model: string,
+  ) {
+    return this.vehiclesService.getYearsByBrandAndModel(brand, model);
+  }
+
   @Get('owner/:ownerId')
   findByOwner(@Param('ownerId') ownerId: string) {
     return this.vehiclesService.findByOwner(ownerId);

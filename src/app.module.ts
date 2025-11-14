@@ -10,6 +10,10 @@ import { InspectionsModule } from './modules/inspections/inspections.module';
 import { ChatModule } from './modules/chat/chat.module';
 import { PaymentsModule } from './modules/payments/payments.module';
 import { SearchModule } from './modules/search/search.module';
+import { MechanicsModule } from './modules/mechanics/mechanics.module';
+import { AutoboxModulesModule } from './modules/autobox-modules/autobox-modules.module';
+import { MechanicEarningsModule } from './modules/mechanic-earnings/mechanic-earnings.module';
+import { UploadsModule } from './modules/uploads/uploads.module';
 
 @Module({
   imports: [
@@ -25,6 +29,10 @@ import { SearchModule } from './modules/search/search.module';
     ChatModule,
     PaymentsModule,
     SearchModule,
+    MechanicsModule,
+    AutoboxModulesModule,
+    MechanicEarningsModule,
+    UploadsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

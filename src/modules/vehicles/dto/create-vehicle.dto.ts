@@ -7,6 +7,8 @@ import {
   IsBoolean,
   Min,
   Max,
+  ArrayMaxSize,
+  IsUrl,
 } from 'class-validator';
 
 export class CreateVehicleDto {
@@ -57,11 +59,13 @@ export class CreateVehicleDto {
 
   @IsArray()
   @IsOptional()
+  @ArrayMaxSize(6, { message: 'Maximum 6 images allowed' })
   images?: string[];
 
-  @IsString()
+  @IsArray()
   @IsOptional()
-  videoUrl?: string;
+  @ArrayMaxSize(6, { message: 'Maximum 6 videos allowed' })
+  videos?: string[];
 
   @IsBoolean()
   @IsOptional()

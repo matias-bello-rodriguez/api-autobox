@@ -9,6 +9,7 @@ import {
 } from 'typeorm';
 import { Vehicle } from '../../vehicles/entities/vehicle.entity';
 import { User } from '../../users/entities/user.entity';
+import { Mechanic } from '../../mechanics/entities/mechanic.entity';
 
 @Entity('inspections')
 export class Inspection {
@@ -32,6 +33,13 @@ export class Inspection {
   @JoinColumn({ name: 'userId' })
   user: User;
 
+  @Column({ type: 'uuid', nullable: true })
+  mechanicId: string;
+
+  @ManyToOne(() => Mechanic, { nullable: true })
+  @JoinColumn({ name: 'mechanicId' })
+  mechanic: Mechanic;
+
   @Column({ type: 'date' })
   inspectionDate: Date;
 
@@ -41,11 +49,18 @@ export class Inspection {
   @Column({ length: 100 })
   autoboxLocation: string;
 
-  @Column({ length: 50, default: 'pending' }) // pending, completed, cancelled
+  @Column({ length: 50, default: 'pending' })
+  // pending, paid, assigned, in_progress, completed, cancelled
   status: string;
 
   @Column({ type: 'decimal', precision: 10, scale: 2 })
   price: number;
+
+  @Column({ nullable: true, length: 500 })
+  videoUrl: string; // URL del video de la inspección
+
+  @Column({ nullable: true, length: 500 })
+  pdfReportUrl: string; // URL del informe PDF
 
   @Column({ type: 'json', nullable: true })
   results: any;

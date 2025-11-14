@@ -50,8 +50,8 @@ export class Vehicle {
   @Column({ type: 'json', nullable: true })
   images: string[];
 
-  @Column({ nullable: true })
-  videoUrl: string;
+  @Column({ type: 'json', nullable: true })
+  videos: string[];
 
   @Column({ default: 'available' }) // available, sold, inspection_pending
   status: string;
